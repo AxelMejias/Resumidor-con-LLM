@@ -45,6 +45,9 @@ curl -X POST http://localhost:8000/summarize \
 ```json
 {"summary": "No verão passado, viajei com a família a uma vila montanhosa. Partimos cedo, saboreamos café, vimos animais e rios, e chegamos felizes à nossa cabana de madeira."}
 ```
+```json
+{"summary": "El verano pasado, mi familia y yo visitamos un pueblo montañoso. Tomamos café, la camioneta y condujimos. Vimos animales y ríos; al llegar a la cabaña, estuvimos felices y emocionados."}
+```
 
 ## Configuration
 
