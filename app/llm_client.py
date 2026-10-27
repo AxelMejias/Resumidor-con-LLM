@@ -14,7 +14,7 @@ class LLMTimeoutError(LLMError):
     pass
 
 
-class LLMAuthError(LLMError):
+class LLMConfigError(LLMError):
     pass
 
 
@@ -48,8 +48,9 @@ class LLMClient:
             )
         except openai.APITimeoutError as exc:
             raise LLMTimeoutError() from exc
-        except openai.AuthenticationError as exc:
-            raise LLMAuthError() from exc
+        # Bad key or unknown model: our setup is wrong, not the client's request.
+        except (openai.AuthenticationError, openai.NotFoundError) as exc:
+            raise LLMConfigError() from exc
         except openai.RateLimitError as exc:
             raise LLMRateLimitError() from exc
         except openai.APIError as exc:

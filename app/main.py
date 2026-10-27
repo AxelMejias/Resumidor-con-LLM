@@ -4,7 +4,7 @@ from fastapi import FastAPI, Request
 from fastapi.responses import JSONResponse
 
 from app.llm_client import (
-    LLMAuthError,
+    LLMConfigError,
     LLMEmptyResponseError,
     LLMError,
     LLMRateLimitError,
@@ -17,7 +17,7 @@ logger = logging.getLogger(__name__)
 LLM_ERROR_RESPONSES = {
     LLMTimeoutError: (504, "The summary service took too long to respond."),
     LLMRateLimitError: (503, "The summary service is busy. Try again later."),
-    LLMAuthError: (502, "The summary service is misconfigured."),
+    LLMConfigError: (502, "The summary service is misconfigured."),
     LLMEmptyResponseError: (502, "The summary service returned an empty summary."),
 }
 

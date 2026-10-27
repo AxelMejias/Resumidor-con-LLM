@@ -1,7 +1,7 @@
 import pytest
 
 from app.llm_client import (
-    LLMAuthError,
+    LLMConfigError,
     LLMError,
     LLMRateLimitError,
     LLMTimeoutError,
@@ -33,7 +33,7 @@ def test_summarize_returns_summary(client, fake_llm):
     [
         (LLMTimeoutError(), 504),
         (LLMRateLimitError(), 503),
-        (LLMAuthError(), 502),
+        (LLMConfigError(), 502),
         (LLMError(), 502),
     ],
 )
