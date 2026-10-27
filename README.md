@@ -91,5 +91,6 @@ pytest
 
 - No user authentication.
 - The rate limiter lives in memory: it works for a single process and resets on restart.
+- Clients are identified by IP: behind a proxy or Docker port mapping, many clients may share one limit.
 - No caching of repeated requests.
-- The prompt tells the model to treat the input as text to summarize, but prompt injection can't be fully ruled out. The service only returns text; it never executes anything.
+- `language` only accepts plain words because it goes into the system prompt. The prompt tells the model to treat the input as text to summarize, but prompt injection can't be fully ruled out. The service only returns text; it never executes anything.

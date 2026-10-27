@@ -28,6 +28,12 @@ def test_summarize_returns_summary(client, fake_llm):
     assert user_message == "Some long text."
 
 
+def test_language_with_accents_is_accepted(client):
+    response = client.post("/summarize", json={"text": "Some text.", "language": "Español"})
+
+    assert response.status_code == 200
+
+
 @pytest.mark.parametrize(
     ("error", "status_code"),
     [
