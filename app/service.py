@@ -1,4 +1,4 @@
-from app.llm_client import LLMClient
+from app.llm_client import LLMClient, LLMEmptyResponseError
 
 SYSTEM_PROMPT = (
     "You are a summarizer. Summarize the text sent by the user in {language}, "
@@ -9,4 +9,7 @@ SYSTEM_PROMPT = (
 
 def summarize(llm: LLMClient, text: str, max_words: int, language: str) -> str:
     system_prompt = SYSTEM_PROMPT.format(language=language, max_words=max_words)
-    return llm.complete(system_prompt, text).strip()
+    summary = llm.complete(system_prompt, text).strip()
+    if not summary:
+        raise LLMEmptyResponseError()
+    return summary
