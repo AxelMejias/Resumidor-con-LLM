@@ -86,7 +86,8 @@ pytest
   | Empty summary or any other error | `502` |
 
 - **Input validation.** Empty or whitespace-only text, text over the limit and out-of-range `max_words` are rejected with `422` before calling the LLM, so no quota is spent on them.
-- **Rate limiting per client IP**, with a sliding window (`429` when exceeded).
+- **Rate limiting per client IP**, with a sliding window (`429` when exceeded). Clients that stay idle for a full window are dropped from memory, so the limiter doesn't grow forever.
+- **Docker image runs as a non-root user.**
 - **Tests without network**, using FastAPI dependency overrides to inject a fake client.
 - **No user text in logs**: only the error type is logged.
 
